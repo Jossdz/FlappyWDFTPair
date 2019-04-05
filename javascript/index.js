@@ -44,7 +44,7 @@ window.onload = () => {
     }
     draw(){
       this.y++
-      ctx.drawImage(this.img, this.x, this.y, 15, 15)
+      ctx.drawImage(this.img, this.x, this.y, 20, 15)
     }
     fly(){
       this.y -= 25
@@ -62,7 +62,7 @@ window.onload = () => {
     constructor(y = 0, height = 270, type) {
       this.x = canvas.width
       this.y = y
-      this.width = 20
+      this.width = 35
       this.height = height
       this.type = type
       this.img1 = new Image()
@@ -92,7 +92,8 @@ window.onload = () => {
     generatePipes()
     drawPipes()
     checkCollition()
-    ctx.fillText(Math.round((frames/1000)* 10), 100, 30)
+    ctx.fillText(Math.round((frames/1000)* 10), 40, 20)
+    
     frames++
   }
 
@@ -102,9 +103,14 @@ window.onload = () => {
   }
 
   function gameOver() {
+    ctx.fillStyle = "#8b0000";
+				ctx.font="10pt Georgia";
+    ctx.fillRect(0, 125, 80, 20)
+    
     clearInterval(interval)
-    ctx.fillText('Perdiste broooo', 50, 50)
-  }
+    ctx.fillStyle = 'white';
+    ctx.fillText('YOU  LOSE', 0, 140)
+    }
 
   //listeners
   document.addEventListener('keydown', (e) => {
