@@ -6,6 +6,8 @@ let Bo =  'https://github.com/ironhack-labs/lab-canvas-flappybirds/blob/master/s
 
 let To =  'https://github.com/ironhack-labs/lab-canvas-flappybirds/blob/master/starter_code/images/obstacle_top.png?raw=true'
 
+let gameOverImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqPADCIhVuwl3ZRRxCvCIYaix_VD38FgcoZDulLcHcv024W79CEQ'
+
 let obstacles = []
 
 
@@ -80,9 +82,26 @@ window.onload = () => {
     }
   }
 
+  class GameOverImg {
+    constructor(img){
+      this.x = 0
+      this.y = 0
+      this.img = new Image()
+      this.img.src = img
+      this.img.onload = () => {
+        this.draw()
+      }
+    }
+    draw(){
+      ctx.drawImage(this.img, this.x, this.y, canvas.width, canvas.height)
+    }
+  }
+
+
   // Definiciones
   const board = new Board(bg)
   const flappy = new Flappy(fp, 100, 100)
+  const gameoverimg = new GameOverImg(gameOverImg)
 
   // flujo principal
   function update() {
@@ -103,7 +122,9 @@ window.onload = () => {
 
   function gameOver() {
     clearInterval(interval)
-    ctx.fillText('Perdiste broooo', 50, 50)
+    //ctx.clearRect(0, 0, canvas.width, canvas.height)
+    //ctx.fillText('Perdiste broooo', 50, 50)
+    gameoverimg.draw()
   }
 
   //listeners
